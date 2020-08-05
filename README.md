@@ -16,7 +16,7 @@ The engine is built using tip-of-tree llvm/clang 10 and libcxx. The following ar
 --linux-cpu arm
 --runtime-mode debug
 --embedder-for-target
---no-lto
+--lto
 --target-os linux
 --arm-float-abi hard
 ```
