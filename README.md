@@ -14,7 +14,8 @@ If you want to install the flutter engine on your Pi, do the following steps:
 
 1. Install the binaries:
 ```
-$ git clone --depth 1 --branch engine-binaries https://github.com/ardera/flutter-pi.git
+$ git clone --depth 1 --branch engine-binaries https://github.com/ardera/flutter-pi.git engine-binaries
+$ cd engine-binaries
 $ sudo cp ./libflutter_engine.so.* ./icudtl.dat /usr/lib
 $ sudo cp ./flutter_embedder.h /usr/include
 ```
