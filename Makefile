@@ -1,4 +1,4 @@
-REAL_CFLAGS = -I./include $(shell pkg-config --cflags gbm libdrm glesv2 egl libsystemd libinput libudev xkbcommon) \
+REAL_CFLAGS = -I./include $(shell pkg-config --cflags gbm libdrm glesv2 egl libinput libudev xkbcommon) \
 	-DBUILD_TEXT_INPUT_PLUGIN \
 	-DBUILD_TEST_PLUGIN \
 	-DBUILD_OMXPLAYER_VIDEO_PLAYER_PLUGIN \
@@ -6,7 +6,7 @@ REAL_CFLAGS = -I./include $(shell pkg-config --cflags gbm libdrm glesv2 egl libs
 	$(CFLAGS)
 
 REAL_LDFLAGS = \
-	$(shell pkg-config --libs gbm libdrm glesv2 egl libsystemd libinput libudev xkbcommon) \
+	$(shell pkg-config --libs gbm libdrm glesv2 egl libinput libudev xkbcommon) \
 	-lrt \
 	-lpthread \
 	-ldl \
