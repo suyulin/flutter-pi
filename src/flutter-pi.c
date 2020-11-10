@@ -1444,9 +1444,11 @@ static int init_display(void) {
 	flutterpi.gbm.device = gbm_create_device(flutterpi.drm.drmdev->fd);
 	flutterpi.gbm.format = DRM_FORMAT_ARGB8888;
 	flutterpi.gbm.surface = NULL;
+	#if 0 // MALI doesn't support modifiers.
 	flutterpi.gbm.modifier = DRM_FORMAT_MOD_LINEAR;
 
 	flutterpi.gbm.surface = gbm_surface_create_with_modifiers(flutterpi.gbm.device, flutterpi.display.width, flutterpi.display.height, flutterpi.gbm.format, &flutterpi.gbm.modifier, 1);
+	#endif
 	if (flutterpi.gbm.surface == NULL) {
 		perror("[flutter-pi] Could not create GBM Surface. gbm_surface_create_with_modifiers");
 		return errno;
