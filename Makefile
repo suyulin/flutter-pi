@@ -8,9 +8,12 @@ REAL_LDFLAGS = \
 	-lpthread \
 	-ldl \
 	-lm \
+	-rdynamic \
 	$(LDFLAGS)
 
 SOURCES = src/flutter-pi.c \
+	src/platformchannel.c \
+	src/pluginregistry.c \
 	src/plugins/services.c \
 	src/plugins/text_input.c \
 	src/plugins/raw_keyboard.c \
