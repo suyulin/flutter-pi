@@ -21,7 +21,6 @@ SOURCES = src/flutter-pi.c \
 	src/modesetting.c \
 	src/collection.c \
 	src/cursor.c \
-	src/keyboard.c \
 	src/plugins/services.c \
 	src/plugins/testplugin.c \
 	src/plugins/text_input.c \
