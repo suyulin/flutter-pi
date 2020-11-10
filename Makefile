@@ -1,11 +1,11 @@
-REAL_CFLAGS = -I./include $(shell pkg-config --cflags gbm libdrm glesv2 egl   ) \
+REAL_CFLAGS = -I./include $(shell pkg-config --cflags gbm libdrm glesv2 egl  libinput  ) \
 	-DBUILD_TEXT_INPUT_PLUGIN \
 	-DBUILD_TEST_PLUGIN \
 	-O0 -ggdb \
 	$(CFLAGS)
 
 REAL_LDFLAGS = \
-	$(shell pkg-config --libs gbm libdrm glesv2 egl libinput  ) \
+	$(shell pkg-config --libs gbm libdrm glesv2 egl  libinput  ) \
 	-lrt \
 	-lpthread \
 	-ldl \
@@ -18,9 +18,14 @@ SOURCES = src/flutter-pi.c \
 	src/pluginregistry.c \
 	src/texture_registry.c \
 	src/compositor.c \
+	src/modesetting.c \
 	src/collection.c \
+	src/cursor.c \
 	src/keyboard.c \
 	src/plugins/services.c \
+	src/plugins/testplugin.c \
+	src/plugins/text_input.c \
+	src/plugins/raw_keyboard.c \
 
 OBJECTS = $(patsubst src/%.c,out/obj/%.o,$(SOURCES))
 
