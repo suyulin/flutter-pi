@@ -18,14 +18,9 @@ SOURCES = src/flutter-pi.c \
 	src/pluginregistry.c \
 	src/texture_registry.c \
 	src/compositor.c \
-	src/modesetting.c \
 	src/collection.c \
-	src/cursor.c \
 	src/keyboard.c \
 	src/plugins/services.c \
-	src/plugins/testplugin.c \
-	src/plugins/text_input.c \
-	src/plugins/raw_keyboard.c \
 
 OBJECTS = $(patsubst src/%.c,out/obj/%.o,$(SOURCES))
 
