@@ -1,11 +1,11 @@
-REAL_CFLAGS = -I./include $(shell pkg-config --cflags gbm libdrm glesv2 egl  libinput  ) \
+REAL_CFLAGS = -I./include $(shell pkg-config --cflags gbm libdrm glesv2 egl  libinput libudev ) \
 	-DBUILD_TEXT_INPUT_PLUGIN \
 	-DBUILD_TEST_PLUGIN \
 	-O0 -ggdb \
 	$(CFLAGS)
 
 REAL_LDFLAGS = \
-	$(shell pkg-config --libs gbm libdrm glesv2 egl  libinput  ) \
+	$(shell pkg-config --libs gbm libdrm glesv2 egl  libinput) \
 	-lrt \
 	-lpthread \
 	-ldl \
