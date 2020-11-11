@@ -135,7 +135,7 @@ static uint32_t gbm_bo_get_drm_fb_id(struct gbm_bo *bo) {
 	width = gbm_bo_get_width(bo);
 	height = gbm_bo_get_height(bo);
 	format = gbm_bo_get_format(bo);
-
+#if 0 // MALI doesn't support planes and modifiers.
 	uint64_t modifiers[4] = {0};
 	modifiers[0] = gbm_bo_get_modifier(bo);
 	const int num_planes = gbm_bo_get_plane_count(bo);
@@ -152,7 +152,7 @@ static uint32_t gbm_bo_get_drm_fb_id(struct gbm_bo *bo) {
 	}
 
 	ok = drmModeAddFB2WithModifiers(flutterpi.drm.drmdev->fd, width, height, format, handles, strides, offsets, modifiers, &fb->fb_id, flags);
-
+#endif
 	if (ok) {
 		if (flags)
 			fprintf(stderr, "drm_fb_get_from_bo: modifiers failed!\n");
