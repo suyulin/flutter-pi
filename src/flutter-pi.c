@@ -239,7 +239,7 @@ struct drm_fb *drm_fb_get_from_bo(struct gbm_bo *bo) {
 	width = gbm_bo_get_width(bo);
 	height = gbm_bo_get_height(bo);
 	format = gbm_bo_get_format(bo);
-
+#if 0 // MALI doesn't support planes and modifiers.
 	uint64_t modifiers[4] = {0};
 	modifiers[0] = gbm_bo_get_modifier(bo);
 	const int num_planes = gbm_bo_get_plane_count(bo);
@@ -256,7 +256,7 @@ struct drm_fb *drm_fb_get_from_bo(struct gbm_bo *bo) {
 	}
 
 	ok = drmModeAddFB2WithModifiers(drm.fd, width, height, format, handles, strides, offsets, modifiers, &fb->fb_id, flags);
-
+#endif
 	if (ok) {
 		if (flags)
 			fprintf(stderr, "drm_fb_get_from_bo: modifiers failed!\n");
@@ -961,7 +961,8 @@ bool init_display(void) {
 	printf("Finding DRM encoder...\n");
 	for (i = 0; i < resources->count_encoders; i++) {
 		encoder = drmModeGetEncoder(drm.fd, resources->encoders[i]);
-		if (encoder->encoder_id == connector->encoder_id)
+		if (!connector->encoder_id ||
+		    encoder->encoder_id == connector->encoder_id)
 			break;
 		drmModeFreeEncoder(encoder);
 		encoder = NULL;
@@ -994,6 +995,7 @@ bool init_display(void) {
 	gbm.device = gbm_create_device(drm.fd);
 	gbm.format = DRM_FORMAT_XRGB8888;
 	gbm.surface = NULL;
+	#if 0 // MALI doesn't support modifiers.
 	gbm.modifier = DRM_FORMAT_MOD_LINEAR;
 
 	gbm.surface = gbm_surface_create_with_modifiers(gbm.device, width, height, gbm.format, &gbm.modifier, 1);
@@ -1005,7 +1007,7 @@ bool init_display(void) {
 		}
 		gbm.surface = gbm_surface_create(gbm.device, width, height, gbm.format, GBM_BO_USE_SCANOUT | GBM_BO_USE_RENDERING);
 	}
-
+    #endif
 	if (!gbm.surface) {
 		fprintf(stderr, "failed to create GBM surface\n");
 		return false;
