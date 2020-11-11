@@ -1000,14 +1000,14 @@ bool init_display(void) {
 
 	gbm.surface = gbm_surface_create_with_modifiers(gbm.device, width, height, gbm.format, &gbm.modifier, 1);
 
-	if (!gbm.surface) {
+    #endif
+    if (!gbm.surface) {
 		if (gbm.modifier != DRM_FORMAT_MOD_LINEAR) {
 			fprintf(stderr, "GBM Surface creation modifiers requested but not supported by GBM\n");
 			return false;
 		}
 		gbm.surface = gbm_surface_create(gbm.device, width, height, gbm.format, GBM_BO_USE_SCANOUT | GBM_BO_USE_RENDERING);
 	}
-    #endif
 	if (!gbm.surface) {
 		fprintf(stderr, "failed to create GBM surface\n");
 		return false;
