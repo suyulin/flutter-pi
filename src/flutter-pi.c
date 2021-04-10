@@ -723,11 +723,11 @@ bool setup_paths(void) {
 		return false;
 	}
 	
-	snprintf(flutter.kernel_blob_path, sizeof(flutter.kernel_blob_path), "%s/kernel_blob.bin", flutter.asset_bundle_path);
-	if (!PATH_EXISTS(flutter.kernel_blob_path)) {
-		fprintf(stderr, "Kernel blob does not exist inside Asset Bundle Directory.\n");
-		return false;
-	}
+	// snprintf(flutter.kernel_blob_path, sizeof(flutter.kernel_blob_path), "%s/kernel_blob.bin", flutter.asset_bundle_path);
+	// if (!PATH_EXISTS(flutter.kernel_blob_path)) {
+	// 	fprintf(stderr, "Kernel blob does not exist inside Asset Bundle Directory.\n");
+	// 	return false;
+	// }
 
 	snprintf(flutter.icu_data_path, sizeof(flutter.icu_data_path), "/usr/lib/icudtl.dat");
 
